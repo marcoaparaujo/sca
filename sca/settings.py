@@ -26,7 +26,7 @@ SECRET_KEY = '=$&k!@aba7=#!y%sr_8aso$z$c))eg+umgn%7v2c9ezs5!qeg$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['sca-mapa.herokuapp.com']
+ALLOWED_HOSTS = ['sca-mapa.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -75,33 +75,34 @@ WSGI_APPLICATION = 'sca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-""" SQLite local
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+if DEBUG:
+    # SQLite local
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
-"""
 
-""" Postgre local (criar banco e usuário previamente)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sca',
-        'USER': 'marco',
-        'PASSWORD': 'marcoaparaujo',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    """
+    # Postgre local (criar banco e usuário previamente)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'sca',
+            'USER': 'marco',
+            'PASSWORD': 'marcoaparaujo',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
-}
-"""
-
-# Postgre Heroku
-DATABASES = {
-    'default': dj_database_url.config()
-}
-
+    """
+else:
+    # Postgre Heroku
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
