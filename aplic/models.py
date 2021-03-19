@@ -83,6 +83,3 @@ class Turma(models.Model):
     def __str__(self):
         return f"{self.ano} / {self.semestre} / {self.turma} / {self.disciplina}"
 
-
-class Nova(models.Model):
-    pass
