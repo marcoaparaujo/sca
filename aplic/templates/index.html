@@ -81,7 +81,7 @@
                 <div class="col-lg-12">
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="{% url 'index' %}">
                             <img src="{% static 'images/logo/logo.svg' %}" alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -93,7 +93,7 @@
                         </button>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item"><a class="active" href="index.html">Home</a></li>
+                                <li class="nav-item"><a class="active" href="{% url 'index' %}">Home</a></li>
                                 <li class="nav-item"><a href="javascript:void(0)">Courses</a></li>
                                 <li class="nav-item"><a href="javascript:void(0)">Events</a></li>
                                 <li class="nav-item">
@@ -102,7 +102,7 @@
                                         aria-controls="navbarSupportedContent" aria-expanded="false"
                                         aria-label="Toggle navigation">Pages</a>
                                     <ul class="sub-menu collapse" id="submenu-1-4">
-                                        <li class="nav-item"><a href="about-us.html">About Us</a></li>
+                                        <li class="nav-item"><a href="{% url 'sobre' %}">About Us</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a href="javascript:void(0)">Blog</a></li>
@@ -140,7 +140,7 @@
                                         standard
                                         <br>dummy text ever since an to impression.</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.html" class="btn">Learn More</a>
+                                        <a href="{% url 'sobre' %}" class="btn">Learn More</a>
                                         <a href="courses-grid.html" class="btn alt-btn">Our Courses</a>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                                         standard
                                         <br>dummy text ever since an to impression.</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.html" class="btn">Learn More</a>
+                                        <a href="{% url 'sobre' %}" class="btn">Learn More</a>
                                         <a href="events-grid.html" class="btn alt-btn">Our Events</a>
                                     </div>
                                 </div>
@@ -188,7 +188,7 @@
                                         standard
                                         <br>dummy text ever since an to impression.</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.html" class="btn">Learn More</a>
+                                        <a href="{% url 'sobre' %}" class="btn">Learn More</a>
                                         <a href="#" class="btn alt-btn">Our Courses</a>
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                             <p class="qote wow fadeInUp" data-wow-delay=".8s">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit, do eius mod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
-                                <a href="about-us.html" class="btn">Read More</a>
+                                <a href="{% url 'sobre' %}" class="btn">Read More</a>
                                 <a href="https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM"
                                     class="glightbox video btn"> Play Video<i class="lni lni-play"></i></a>
                             </div>
@@ -576,7 +576,7 @@
                         <!-- Single Widget -->
                         <div class="f-about single-footer">
                             <div class="logo">
-                                <a href="index.html"><img src="{% static 'images/logo/logo.svg' %}" alt="Logo"></a>
+                                <a href="{% url 'index' %}"><img src="{% static 'images/logo/logo.svg' %}" alt="Logo"></a>
                             </div>
                             <p>Nemo enim enim voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
                                 consequ magni dolores eos qui ratione.</p>
