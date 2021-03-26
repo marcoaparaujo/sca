@@ -22,4 +22,4 @@ from django.conf import settings
 urlpatterns = [
     path('restrito/', admin.site.urls),
     path('', include('aplic.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
