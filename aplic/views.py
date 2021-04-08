@@ -20,6 +20,6 @@ class ProfessoresView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfessoresView, self).get_context_data(**kwargs)
-        context['professores'] = Professor.objects.order_by('?').all()
+        context['professores'] = Professor.objects.order_by('nome').all()
         return context
 
