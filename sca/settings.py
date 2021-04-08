@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=$&k!@aba7=#!y%sr_8aso$z$c))eg+umgn%7v2c9ezs5!qeg$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['sca-mapa.herokuapp.com', '127.0.0.1']
 
