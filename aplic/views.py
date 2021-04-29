@@ -32,6 +32,12 @@ class CursoDetalheView(ListView):
     ordering = 'nome'
     model = Disciplina
 
+    def get_context_data(self, **kwargs):
+        context = super(CursoDetalheView, self).get_context_data(**kwargs)
+        id = self.kwargs['id']
+        context['curso'] = Curso.objects.filter(id=id).first
+        return context
+
     def get_queryset(self, **kwargs):
         id = self.kwargs['id']
         return Disciplina.objects.filter(curso_id=id)
