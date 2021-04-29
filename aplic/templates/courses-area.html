@@ -21,10 +21,10 @@
                             <!-- Start Single Course -->
                             <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                                 <div class="course-image">
-                                    <a href="course-details.html"><img src="{{ curso.imagem.thumb.url }}" alt="{{ curso.nome }}"  alt="#"></a>
+                                    <a href="{% url 'curso-detalhe' id=curso.id %}"><img src="{{ curso.imagem.thumb.url }}" alt="{{ curso.nome }}"  alt="#"></a>
                                 </div>
                                 <div class="content">
-                                    <h3><a href="course-details.html">{{ curso.nome }}</a></h3>
+                                    <h3><a href="{% url 'curso-detalhe' id=curso.id %}">{{ curso.nome }}</a></h3>
                                     <p>
                                         {{ curso.descricao }}
                                     </p>
