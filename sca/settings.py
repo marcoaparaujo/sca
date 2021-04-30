@@ -33,13 +33,14 @@ ALLOWED_HOSTS = ['sca-mapa.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'aplic',
+    'bootstrap4',
+    'chartjs',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
 
 ]
 

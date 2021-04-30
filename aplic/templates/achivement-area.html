@@ -1,33 +1,41 @@
 {% load static %}
+{% load bootstrap4 %}
+
     <!-- Start Achivement Area -->
     <section class="our-achievement section overlay">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
-                        <h3 class="counter"><span id="secondo1" class="countup" cup-end="500">500</span>+</h3>
-                        <h4>Happy Clients</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
-                        <h3 class="counter"><span id="secondo2" class="countup" cup-end="70">70</span>+</h3>
-                        <h4>Online Courses</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
-                        <h3 class="counter"><span id="secondo3" class="countup" cup-end="100">100</span>%</h3>
-                        <h4>Satisfaction</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
-                        <h3 class="counter"><span id="secondo4" class="countup" cup-end="100">100%</span>%</h3>
-                        <h4>Support</h4>
-                    </div>
-                </div>
+                <canvas id="grafico-alunos" height="300"></canvas>
             </div>
         </div>
     </section>
     <!-- End Achivement Area -->
+  {% bootstrap_javascript jquery='full' %}
+
+  <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+
+<script type="text/javascript">
+    $.get('{% url "dados-grafico-alunos" %}', function(dados){
+      var ctx = $("#grafico-alunos").get(0).getContext("2d");
+      rotulos = dados['labels']
+      valores = dados['datasets'][0]['data']
+
+      new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+              labels: rotulos,
+              datasets: [{
+                  data: valores,
+                  backgroundColor: [
+                      'rgba(153, 102, 255, 0.9)',
+                      'rgba(255, 206, 86, 0.9)',
+                      'rgba(255, 159, 64, 0.9)',
+                      'rgba(75, 192, 192, 0.9)',
+                      'rgba(255, 99, 132, 0.9)',
+                      'rgba(54, 162, 235, 0.9)',
+                  ]
+              }]
+          }
+      });
+    });
+</script>
