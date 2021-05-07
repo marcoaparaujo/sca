@@ -3,8 +3,18 @@ from django.views.generic import TemplateView
 from django.views.generic import ListView
 
 from chartjs.views.lines import BaseLineChartView
+from django_weasyprint import WeasyTemplateView
 
 from .models import Professor, Curso, Disciplina, Aluno
+
+from django.core.files.storage import FileSystemStorage
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+
+from weasyprint import HTML
+
+from django.utils.translation import gettext as _
+from django.utils import translation
 
 
 class IndexView(TemplateView):
@@ -12,7 +22,10 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        lang = translation.get_language()
         context['cursos'] = Curso.objects.order_by('?').all()
+        context['lang'] = lang
+        translation.activate(lang)
         return context
 
 
@@ -65,3 +78,18 @@ class DadosGraficoAlunosView(BaseLineChartView):
         return resultado
 
 
+class RelatorioAlunosView(WeasyTemplateView):
+
+    def get(self, request, *args, **kwargs):
+        alunos = Aluno.objects.order_by('nome').all()
+
+        html_string = render_to_string('relatorio-alunos.html', {'alunos': alunos})
+
+        html = HTML(string=html_string, base_url=request.build_absolute_uri())
+        html.write_pdf(target='/tmp/relatorio-alunos.pdf')
+        fs = FileSystemStorage('/tmp')
+
+        with fs.open('relatorio-alunos.pdf') as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename="relatorio-alunos.pdf"'
+        return response

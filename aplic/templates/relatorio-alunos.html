@@ -1,0 +1,34 @@
+{% load i18n %}
+{% load static %}
+<html>
+<head>
+    <title>{% trans 'Relatório de Alunos' %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <center>
+        <img src="{% static 'images/logo/logo.svg' %}">
+        <br/>
+        <h1>{% trans 'Relatório de Alunos' %}</h1>
+    </center>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">{% trans 'Nome do Aluno' %}</th>
+                    <th scope="col">{% trans 'E-mail' %}</th>
+                    <th scope="col">{% trans 'Curso' %}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for a in alunos %}
+                    <tr>
+                        <th scope="row">{{ a.nome }}</th>
+                        <th scope="row">{{ a.email }}</th>
+                        <th scope="row">{{ a.curso }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>

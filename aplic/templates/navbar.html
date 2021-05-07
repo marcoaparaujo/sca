@@ -28,7 +28,15 @@
                                         <li class="nav-item"><a href="{% url 'professores' %}">Professores</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a href="javascript:void(0)">Blog</a></li>
+                                <li class="nav-item">
+                                    <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                        data-bs-toggle="collapse" data-bs-target="#submenu-1-5"
+                                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                                        aria-label="Toggle navigation">Relatórios</a>
+                                    <ul class="sub-menu collapse" id="submenu-1-5">
+                                        <li class="nav-item"><a href="{% url 'relatorio-alunos' %}" target="_blank">Alunos</a></li>
+                                    </ul>
+                                </li>
                                 <li class="nav-item"><a href="javascript:void(0)">Contact</a></li>
                             </ul>
                             <form class="d-flex search-form">
