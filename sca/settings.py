@@ -156,3 +156,16 @@ LOCALE_PATHS = (
 	os.path.join(BASE_DIR, 'locale'),
 )
 
+# Email teste console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+"""
+# Email produção
+
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'no-reply@dominio.com.br'
+EMAIL_PORT = 587
+EMAIL_USE_TSL = True
+EMAIL_HOST_PASSWORD = 'dominio'
+DEFAULT_FROM_EMAIL = 'contato@dominio.com.br'
+"""
