@@ -35,6 +35,7 @@ class Pessoa(models.Model):
         abstract = True
         verbose_name = _('Professor')
         verbose_name_plural = _('Professores')
+        ordering = ['id']
 
     def __str__(self):
         return self.nome
@@ -68,7 +69,7 @@ class Aluno(Pessoa):
 
 
 class Disciplina(models.Model):
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    curso = models.ForeignKey(Curso, related_name='disciplinas', on_delete=models.CASCADE)
     nome = models.CharField(_('Nome'), max_length=100)
     carga_horaria = models.IntegerField(_('Carga horária'))
     obrigatoria = models.BooleanField(_('Obrigatória'), default=True)

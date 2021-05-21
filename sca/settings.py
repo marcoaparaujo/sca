@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +154,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGOUT_REDIRECT_URL = 'index'
 
 LOCALE_PATHS = (
-	os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 # Email teste console
@@ -169,3 +170,17 @@ EMAIL_USE_TSL = True
 EMAIL_HOST_PASSWORD = 'dominio'
 DEFAULT_FROM_EMAIL = 'contato@dominio.com.br'
 """
+
+# Django Rest Framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+}

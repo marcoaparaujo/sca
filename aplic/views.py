@@ -5,7 +5,10 @@ from django.views.generic import ListView
 
 from chartjs.views.lines import BaseLineChartView
 from django_weasyprint import WeasyTemplateView
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
+from . import serializers
 from .models import Professor, Curso, Disciplina, Aluno
 
 from django.core.files.storage import FileSystemStorage
@@ -20,6 +23,9 @@ from django.utils import translation
 from .forms import ContatoForm
 
 from django.contrib import messages
+
+from aplic.serializers import CursoSerializer, AlunoSerializer, DisciplinaSerializer, ProfessorSerializer
+from rest_framework import viewsets
 
 
 class IndexView(TemplateView):
@@ -111,9 +117,48 @@ class ContatoView(FormView):
 
     def form_valid(self, form, *args, **kwargs):
         form.send_mail()
-        messages.success(self.request, 'E-mail enviado com sucesso', extra_tags='success')
+        messages.success(self.request, _('E-mail enviado com sucesso'), extra_tags='success')
         return super(ContatoView, self).form_valid(form, *args, **kwargs)
 
     def form_invalid(self, form, *args, **kwargs):
-        messages.error(self.request, 'Falha ao enviar e-mail', extra_tags='danger')
+        messages.error(self.request, _('Falha ao enviar e-mail'), extra_tags='danger')
         return super(ContatoView, self).form_invalid(form, *args, **kwargs)
+
+
+class CursoViewSet(viewsets.ModelViewSet):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+
+    @action(detail=True, methods=['get'])
+    def alunos(self, request, pk=None):
+        alunos = Aluno.objects.filter(curso_id=pk)
+        serializer = AlunoSerializer(alunos, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def professores(self, request, pk=None):
+        professores = Professor.objects.filter(curso_id=pk)
+        page = self.paginate_queryset(professores)
+
+        if page is not None:
+            serializer = ProfessorSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = ProfessorSerializer(professores, many=True)
+        return Response(serializer.data)
+
+
+class AlunoViewSet(viewsets.ModelViewSet):
+    queryset = Aluno.objects.all()
+    serializer_class = AlunoSerializer
+
+
+class DisciplinaViewSet(viewsets.ModelViewSet):
+    queryset = Disciplina.objects.all()
+    serializer_class = DisciplinaSerializer
+
+
+class ProfessorViewSet(viewsets.ModelViewSet):
+    queryset = Professor.objects.all()
+    serializer_class = ProfessorSerializer
+
