@@ -9,7 +9,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from . import serializers
-from .models import Professor, Curso, Disciplina, Aluno
+from .models import Professor, Curso, Disciplina, Aluno, Turma
 
 from django.core.files.storage import FileSystemStorage
 from django.template.loader import render_to_string
@@ -24,7 +24,8 @@ from .forms import ContatoForm
 
 from django.contrib import messages
 
-from aplic.serializers import CursoSerializer, AlunoSerializer, DisciplinaSerializer, ProfessorSerializer
+from aplic.serializers import CursoSerializer, AlunoSerializer, DisciplinaSerializer, ProfessorSerializer, \
+    TurmaSerializer
 from rest_framework import viewsets
 
 
@@ -162,3 +163,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
     queryset = Professor.objects.all()
     serializer_class = ProfessorSerializer
 
+
+class TurmaViewSet(viewsets.ModelViewSet):
+    queryset = Turma.objects.all()
+    serializer_class = TurmaSerializer

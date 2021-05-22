@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from aplic.models import Curso, Aluno, Disciplina, Professor
+from aplic.models import Curso, Aluno, Disciplina, Professor, Turma
 
 
 class DisciplinaSerializer(serializers.ModelSerializer):
@@ -15,9 +15,9 @@ class DisciplinaSerializer(serializers.ModelSerializer):
 
 
 class CursoSerializer(serializers.ModelSerializer):
-    disciplinas = DisciplinaSerializer(many=True, read_only=True)
+    # disciplinas = DisciplinaSerializer(many=True, read_only=True)
     # disciplinas = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    # disciplinas = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='disciplina-detail')
+    disciplinas = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='disciplina-detail')
 
     class Meta:
         model = Curso
@@ -56,3 +56,16 @@ class ProfessorSerializer(serializers.ModelSerializer):
             'curso'
         )
 
+
+class TurmaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Turma
+        fields = (
+            'id',
+            'ano',
+            'semestre',
+            'turma',
+            'disciplina',
+            'professor'
+        )

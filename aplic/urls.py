@@ -3,13 +3,15 @@ from django.urls import path
 from rest_framework.routers import SimpleRouter
 
 from .views import IndexView, SobreView, ProfessoresView, CursoDetalheView, DadosGraficoAlunosView, RelatorioAlunosView, \
-    ContatoView, CursoViewSet, AlunoViewSet, DisciplinaViewSet, ProfessorViewSet
+    ContatoView, CursoViewSet, AlunoViewSet, DisciplinaViewSet, ProfessorViewSet, TurmaViewSet
 
 router = SimpleRouter()
 router.register('cursos', CursoViewSet)
 router.register('alunos', AlunoViewSet)
 router.register('disciplinas', DisciplinaViewSet)
 router.register('professores', ProfessorViewSet)
+router.register('turmas', TurmaViewSet)
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
