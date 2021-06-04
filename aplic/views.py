@@ -8,6 +8,8 @@ from django_weasyprint import WeasyTemplateView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from rest_framework import permissions
+
 from . import serializers
 from .models import Professor, Curso, Disciplina, Aluno, Turma
 
@@ -127,6 +129,8 @@ class ContatoView(FormView):
 
 
 class CursoViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.DjangoModelPermissions, )
+
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 
