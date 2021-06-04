@@ -171,3 +171,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
 class TurmaViewSet(viewsets.ModelViewSet):
     queryset = Turma.objects.all()
     serializer_class = TurmaSerializer
+
+
+
+
